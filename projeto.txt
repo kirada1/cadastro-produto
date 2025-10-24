@@ -1,0 +1,12 @@
+projeto 
+    CADASTO DE PRODUTOS
+
+funcionalidades
+    [1] PRODUTOS
+        [1] CRIAR PRODUTOS
+        [2] EDITAR PRODUTOS
+        [3] EXCLUIR PRODUTOS
+    [2] ESTOQUE
+        [1] SALDO EM ESTOQUE  #obs: lista todos os produtos e mosta seus saldos
+        [2] SALDO POR PRODUTO #obs: mosta somente o saldo do produto especifico
+    [3] SAIR DO PROGAMA
