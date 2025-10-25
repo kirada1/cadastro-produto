@@ -1,3 +1,5 @@
-from main import Produto
+from main import Menu
 
 
+menu = Menu()
+menu.EscolherMenu()

@@ -1,5 +1,6 @@
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import WordCompleter
+import os
 
 
 class Produto:  # classe para criar o produto
@@ -25,14 +26,65 @@ class Produto:  # classe para criar o produto
             else:
                 continue
 
-    class Menu:
-        def __inir__(self, op: int) -> None:
-            self.op = op
 
-        def EscolherMenu(self) -> None:
-            print(f"""{20*"="} M E N U {20*"="}\n
-{50*"="}\n
-            [1]\n
-            [2]\n
-            [3]\n
-            [4] """)
+class Menu(Produto):
+    def __inir__(self) -> None:
+        super().__init__()
+
+    def Menus(self) -> None:  # metodo onde fica todos os menus
+        #  menu principal
+        self.MenuPrincipal = str(f"""{20*"="} M E N U {20*"="} 
+            escolha uma opção valida
+{49*"="}
+[1] PRODUTOS
+[2] ESTOQUE
+[3] SAIR
+""")
+        #  segundo menu quando escolher a opção 1
+        self.menuProduto = str(f"""{49*"="}
+[1] ADICIONAR PRODUTO
+[2] EDITAR PRODUTO
+[3] EXCLUIR PRODUTO
+[4] VOLTAR
+""")
+        #  segundo menu quando escolher a opçãp 2    
+        self.MenueStoque = str(f"""{49*"="}
+[1] SALDO EM ESTOQUE
+[2] SALDO POR PRODUTO
+[3] VOLTAR
+""")
+
+    # metodo para escolher as opções do menu
+    def EscolherMenu(self) -> None:
+        self.Menus()  # inicializando o metodo menu para utilizar os atributos dos menus
+        while True:  # loop do primeiro menu
+            os.system("clear")  # apaga o terminal antes de aparecer o menu para fica limpo
+
+            print(self.MenuPrincipal)  # exibe o menu
+            self.op = int(input(""))  # escolher a opção do menu
+
+            # match case para controle das opções do menu
+            match self.op:
+                case 1:
+                    while True:
+                        os.system("clear")
+                        print(self.menuProduto)
+
+                        try:
+                            op = int(input(" escolha uma opção: "))
+                        except ValueError:
+                            print("somente 1 2 ou 3")
+                            continue
+
+                        if op == 1:  # chama metodo de adicionar produto
+                            self.CriarProduto()
+                            continue
+                        elif op == 2:  # chama metodo editar produto
+                            pass  # obs metodo editar produto não criado ainda
+                        else:  # se opção 3 volta para o menu anterior
+                            break
+                case 3:
+                    print("progama finalizado ..............")
+                    break
+                case _:
+                    print("opção errada.............")
