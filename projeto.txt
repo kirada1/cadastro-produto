@@ -4,6 +4,7 @@ projeto
 funcionalidades
     [1] PRODUTOS
         [1] CRIAR PRODUTOS
+            @ descrição,fornecedor,quantidade,familia,cod_barras
         [2] EDITAR PRODUTOS
         [3] EXCLUIR PRODUTOS
     [2] ESTOQUE
