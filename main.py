@@ -1,29 +1,33 @@
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import WordCompleter
 import os
+from save import SalvarProdutos
 
 
 class Produto:  # classe para criar o produto
     def __init__(self) -> None:
-        self.produto: list[tuple[str, str, str]] = []
+        self.produto: dict[str, tuple[str, str, str]] = {}
         self.fornecedores: list[str] = []
         self.fornecedorescomplete = WordCompleter(self.fornecedores, ignore_case=True)
 
-    def CriarProduto(self) -> None:  # metodo para criar o produto
+    def CadastrarProduto(self) -> None:  # metodo para criar o produto
         while True:  # loop para inserir outros produtos, e tambem para validar a quantidade
-
+            os.system("clear")
             descricao = str(input("Descrição do produto: ")).strip()  # armazena descriçãpo
             fornecedor = prompt("fornecedor: ", completer=self.fornecedorescomplete)  # armazena o fornecedor
             familia = str(input("familia: ")).strip()
+            codigo_set = str(input("codigo set: ")).strip()
 
-            juntar_tudo = (descricao, fornecedor, familia)
-            self.produto.append(juntar_tudo)
-            self.fornecedores.append(fornecedor)
+            produto_agrupado = (descricao, fornecedor, familia, )
+            self.produto.update({codigo_set: produto_agrupado})
 
             op = input("adicionar mais outro produto? S/N").lower().strip()
+            a = SalvarProdutos(self.produto)
             if op != "s":
+                a.salvar_produto_criados()
                 break
             else:
+                a.salvar_produto_criados()
                 continue
 
 
@@ -31,7 +35,8 @@ class Menu(Produto):
     def __inir__(self) -> None:
         super().__init__()
 
-    def Menus(self) -> None:  # metodo onde fica todos os menus
+    # metodo onde fica todos os menus
+    def Menus(self) -> None:
         #  menu principal
         self.MenuPrincipal = str(f"""{20*"="} M E N U {20*"="} 
             escolha uma opção valida
@@ -42,7 +47,7 @@ class Menu(Produto):
 """)
         #  segundo menu quando escolher a opção 1
         self.menuProduto = str(f"""{49*"="}
-[1] ADICIONAR PRODUTO
+[1] CADASTRAR PRODUTO
 [2] EDITAR PRODUTO
 [3] EXCLUIR PRODUTO
 [4] VOLTAR
@@ -57,6 +62,7 @@ class Menu(Produto):
     # metodo para escolher as opções do menu
     def EscolherMenu(self) -> None:
         self.Menus()  # inicializando o metodo menu para utilizar os atributos dos menus
+
         while True:  # loop do primeiro menu
             os.system("clear")  # apaga o terminal antes de aparecer o menu para fica limpo
 
@@ -77,7 +83,7 @@ class Menu(Produto):
                             continue
 
                         if op == 1:  # chama metodo de adicionar produto
-                            self.CriarProduto()
+                            self.CadastrarProduto()
                             continue
                         elif op == 2:  # chama metodo editar produto
                             pass  # obs metodo editar produto não criado ainda

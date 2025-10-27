@@ -1,0 +1,2 @@
+{'1010': ('shampoo', 'unilever', 'higiene')}
+{'1010': ('sabonete', 'dove', 'higiene')}
